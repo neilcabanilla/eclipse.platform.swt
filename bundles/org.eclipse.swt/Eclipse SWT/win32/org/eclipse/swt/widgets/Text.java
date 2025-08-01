@@ -626,7 +626,17 @@ void applySegments () {
 	ignoreVerify = oldIgnoreVerify;
 }
 
+private static StyleProcessor STYLE_PROCESSOR = new StyleProcessor()
+.oneOf("SINGLE, MULTI")
+.oneOf("LEFT, CENTER, RIGHT")
+.ifOneOf("SEARCH").thenSomeOf("SINGLE, BORDER").thenExclude("PASSWORD, WRAP")
+.ifOneOf("SINGLE").thenExclude("H_SCROLL, V_SCROLL, WRAP")
+.ifOneOf("WRAP").thenSomeOf("MULTI").thenExclude("H_SCROLL")
+.ifOneOf("MULTI").thenExclude("PASSWORD");
+
+
 static int checkStyle (int style) {
+	System.out.println("Int Style for Text: " + style);
 	if ((style & SWT.SINGLE) != 0 && (style & SWT.MULTI) != 0) {
 		style &= ~SWT.MULTI;
 	}
@@ -649,6 +659,10 @@ static int checkStyle (int style) {
 	if ((style & (SWT.SINGLE | SWT.MULTI)) != 0) return style;
 	if ((style & (SWT.H_SCROLL | SWT.V_SCROLL)) != 0) return style | SWT.MULTI;
 	return style | SWT.SINGLE;
+}
+
+public ArrayList<String> getStyles() {
+	return STYLE_PROCESSOR.process(this.style);
 }
 
 void clearSegments (boolean applyText) {
