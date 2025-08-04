@@ -272,7 +272,7 @@ private static StyleProcessor STYLE_PROCESSOR = new StyleProcessor();
 
 static {
 	StyleProcessor processor = new StyleProcessor();
-
+//Testing
 	if (COMMAND_LINK) {
 		processor.oneOf("PUSH, ARROW, CHECK, RADIO, TOGGLE, SWT.COMMAND");
 	} else {
