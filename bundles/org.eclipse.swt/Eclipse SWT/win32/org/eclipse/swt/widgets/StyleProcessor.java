@@ -5,6 +5,8 @@ import java.util.*;
 import org.eclipse.swt.*;
 
 public class StyleProcessor {
+	
+//	Rule class to build conditional rules for styles
 	private static class Rule {
 	    ArrayList<String> ifOneOf;
 	    ArrayList<String> thenOneOf;
