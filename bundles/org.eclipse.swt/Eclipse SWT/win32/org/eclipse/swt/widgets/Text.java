@@ -629,6 +629,7 @@ void applySegments () {
 private static StyleProcessor STYLE_PROCESSOR = new StyleProcessor()
 .oneOf("SINGLE, MULTI")
 .oneOf("LEFT, CENTER, RIGHT")
+.ifOneOf("SINGLE, MULTI").thenOneOf("BORDER")
 .ifOneOf("SEARCH").thenSomeOf("SINGLE, BORDER").thenExclude("PASSWORD, WRAP")
 .ifOneOf("SINGLE").thenExclude("H_SCROLL, V_SCROLL, WRAP")
 .ifOneOf("WRAP").thenSomeOf("MULTI").thenExclude("H_SCROLL")

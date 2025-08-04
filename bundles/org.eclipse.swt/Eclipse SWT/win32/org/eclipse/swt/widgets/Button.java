@@ -272,11 +272,10 @@ private static StyleProcessor STYLE_PROCESSOR = new StyleProcessor();
 
 static {
 	StyleProcessor processor = new StyleProcessor();
-
+	
+	processor.oneOf("PUSH, ARROW, CHECK, RADIO, TOGGLE");
 	if (COMMAND_LINK) {
-		processor.oneOf("PUSH, ARROW, CHECK, RADIO, TOGGLE, SWT.COMMAND");
-	} else {
-		processor.oneOf("PUSH, ARROW, CHECK, RADIO, TOGGLE");
+		processor.oneOf("COMMAND");
 	}
 	processor.ifOneOf("PUSH, TOGGLE").thenOneOf("CENTER, LEFT, RIGHT")
 	.ifOneOf("CHECK, RADIO").thenOneOf("LEFT, RIGHT, CENTER")
